@@ -1,6 +1,6 @@
 /**
-    kOferta - system usprawniajacy proces ofertowania
-    Copyright (C) 2011  Kamil 'konserw' Strzempowicz, konserw@gmail.com
+    logger - simple qt logging library
+    Copyright (C) 2016  Kamil 'konserw' Strzempowicz, konserw@gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ Logger& Logger::instance()
     return m_instance;
 }
 
-void Logger::logToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+void Logger::handler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     Logger::instance().logOutput(type, context, msg);
 }

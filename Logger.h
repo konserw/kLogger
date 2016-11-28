@@ -1,6 +1,6 @@
 /**
-    kOferta - system usprawniajacy proces ofertowania
-    Copyright (C) 2011  Kamil 'konserw' Strzempowicz, konserw@gmail.com
+    logger - simple qt logging library
+    Copyright (C) 2016  Kamil 'konserw' Strzempowicz, konserw@gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class DLLSPEC Logger
 {
 public:
     static Logger& instance();
-    static void logToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+    static void handler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
     void logOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
     Logger(Logger const&) = delete;
