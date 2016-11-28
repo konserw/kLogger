@@ -1,0 +1,9 @@
+NAME = ogger
+TEMPLATE = lib
+CONFIG += c++11
+
+DEFINES += EXPORT_LOGGER
+DEFINES += QT_MESSAGELOGCONTEXT
+
+HEADERS += Logger.h
+SOURCES += Logger.cpp

@@ -52,6 +52,10 @@ void Logger::logOutput(QtMsgType type, const QMessageLogContext &context, const 
 
 Logger::Logger()
 {
+    m_log = nullptr;
+#ifdef LOG_TO_STDOUT
+    m_out = new QTextStream(stdout);
+#else
     QDir dir(QDir::currentPath());
     dir.mkdir("log");
     dir.cd("log");
@@ -60,7 +64,6 @@ Logger::Logger()
     if(m_log->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
         m_out = new QTextStream(m_log);
-        (*m_out) << "\nStarting kOferta version " << VERSION << endl;
     }
     else
     {
@@ -72,6 +75,7 @@ Logger::Logger()
     QStringList entryList = dir.entryList(filter, QDir::Files, QDir::Name | QDir::Reversed);
     for(int i=7; i < entryList.size(); ++i)
         dir.remove(entryList[i]);
+#endif
 }
 
 Logger::~Logger()
@@ -88,9 +92,5 @@ Logger& Logger::instance()
 
 void Logger::logToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-#ifdef LOG_TO_STDOUT
-    std::cout << msg.toStdString() << std::endl;
-#else
     Logger::instance().logOutput(type, context, msg);
-#endif
 }
