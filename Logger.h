@@ -24,12 +24,15 @@
 class QTextStream;
 class QFile;
 
-#if defined EXPORT_LOGGER
- #define DLLSPEC Q_DECL_EXPORT
+#ifdef STATIC_LOGGER
+    #define DLLSPEC 
 #else
- #define DLLSPEC Q_DECL_IMPORT
+    #if defined EXPORT_LOGGER
+        #define DLLSPEC Q_DECL_EXPORT
+    #else
+        #define DLLSPEC Q_DECL_IMPORT
+    #endif
 #endif
-
 class DLLSPEC Logger
 {
 public:
